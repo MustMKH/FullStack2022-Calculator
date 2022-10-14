@@ -1,12 +1,24 @@
 import {useState} from "react"
 import Digits from "./Digits"
 
-// How to scale display numbers?
+/* 
+TODO: 
+1. How to scale display numbers so that they wont go outside the display? (flex?) 
+2. How to prevent user from entering numbers starting with 0?
+3. How to prevent user from entering multible decimal points to one value (term?):
+    - Tomi's fix': 
+            else if (nappain === "." && laskukentta.includes (".")) {
+            return
+            }
+    - This, however, prevents user from calculating with multiple decimal numbers
+ */
 
-let digits = ["1","2","3","4","5","6","7","8","9","0","."];
-const ops = ["+","-","*","/", "."];
+
 
 function App() {
+    let digits = ["1","2","3","4","5","6","7","8","9","0","."];
+    const ops = ["+","-","*","/","."];
+    
     const [calc, setCalc] = useState("");
     
     const pushedButton=(value)=>{
@@ -38,8 +50,8 @@ function App() {
                 <div className="operators">
                     <button onClick={() => pushedButton("+")}>+</button>
                     <button onClick={() => pushedButton("-")}>-</button>
-                    <button onClick={() => pushedButton("*")}>*</button>
-                    <button onClick={() => pushedButton("/")}>/</button>
+                    <button onClick={() => pushedButton("*")}>x</button>
+                    <button onClick={() => pushedButton("/")}>÷</button>
                 </div>
                 <div className = "digits">
                     {digits.map((digit,index)=><Digits key={index} pushedButton={pushedButton} digit={digit}/>)}
